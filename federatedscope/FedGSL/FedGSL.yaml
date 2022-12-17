@@ -1,0 +1,110 @@
+# Whether to use GPU
+use_gpu: True
+
+# Deciding which GPU to use
+device: 0
+
+# Federate learning related options
+federate:
+  # `standalone` or `distributed`
+  mode: standalone
+  # Evaluate in Server or Client test set
+  make_global_eval: False
+  # Number of dataset being split
+  client_num: 3
+  # Number of communication round
+  total_round_num: 800
+  #Specify the method as FEDPUB
+  method: fedgsl
+
+# Dataset related options
+data:
+  # Root directory where the data stored
+  root: data/
+  # Dataset name
+  type: pubmed
+  # Use Random_splitter to split `Cora`
+  splitter: 'random'
+
+dataloader:
+  # Type of sampler
+  type: pyg
+  # Use fullbatch training, batch_size should be `1`
+  batch_size: 1
+
+# Model related options
+model:
+  # Model type
+  type: gnn_fedgsl_gcn
+  # Hidden dim
+  hidden: 64
+  # Dropout rate
+  dropout: 0.5
+  # Number of Class of `Cora`
+  out_channels: 6
+
+  # FedGSL related options
+  fedgsl:
+    #for local Auto_Encoder
+    pretrain_epoch: 250
+    pretrain_out_channels: 64
+    update_RawNodeFeature: False
+    #for local graph learning module
+    gnn_layer: 2
+    loc_gnn_outsize: 100
+    AE_lr: 0.03
+    #for global GSL module
+    glob_gnn_outsize: 128
+    gsl_gnn_hids: 64
+    k: 10
+    server_lr: 0.01
+    gsl_gnn_dropout: 0.
+    gsl_adj_dropout: 0.
+    gsl_optimizer_type: Adam
+    gsl_clip_grad: False
+    generator: 'MLP-D'
+
+
+#personalization:
+#  local_param: ['lins']
+
+# Criterion related options
+criterion:
+  # Criterion type
+  type: CrossEntropyLoss
+
+# Trainer related options
+trainer:
+  type: fedgsl_trainer
+
+# Train related options
+train:
+  # Number of local update steps
+  local_update_steps: 1
+  # Optimizer related options
+  optimizer:
+    # Learning rate
+    lr: 0.01  #very important
+    # Weight decay
+    weight_decay: 5e-4
+    # Optimizer type
+    type: Adam
+
+# Evaluation related options
+eval:
+  # Frequency of evaluation
+  freq: 1
+  # Evaluation metrics, accuracy and number of correct items
+  metrics: ['acc', 'correct']
+  # metrics for uodate best result
+  best_res_update_round_wise_key: 'val_acc'
+  #report metrics
+  report: ['avg']
+early_stop:
+  patience: 200
+  improve_indicator_mode: best
+  the_smaller_the_better: False
+
+#fedprox:
+#  use: True
+#  mu: 1e-4

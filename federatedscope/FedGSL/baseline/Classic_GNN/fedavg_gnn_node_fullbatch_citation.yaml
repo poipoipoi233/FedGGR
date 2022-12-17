@@ -1,0 +1,45 @@
+use_gpu: True
+device: 0
+federate:
+  mode: standalone
+  make_global_eval: False
+  client_num: 5
+  total_round_num: 800
+data:
+  root: data/
+  type: cora
+  splitter: 'random'
+dataloader:
+  type: pyg
+  batch_size: 1
+model:
+  type: gcn
+  hidden: 64
+  dropout: 0.5
+  out_channels: 7
+  task: node
+train:
+  local_update_steps: 1
+  optimizer:
+    lr: 0.01
+    weight_decay: 0.0005
+    type: Adam
+criterion:
+  type: CrossEntropyLoss
+trainer:
+  type: nodefullbatch_trainer
+
+# Evaluation related options
+eval:
+  # Frequency of evaluation
+  freq: 1
+  # Evaluation metrics, accuracy and number of correct items
+  metrics: ['acc', 'correct']
+  # metrics for uodate best result
+  best_res_update_round_wise_key: 'val_acc'
+  #report metrics
+  report: ['avg']
+early_stop:
+  patience: 200
+  improve_indicator_mode: best
+  the_smaller_the_better: False
