@@ -85,11 +85,11 @@ for ((m = 0; m < ${#client_num[@]}; m++)); do
       model.hidden ${hidden} \
       model.dropout ${dropout} \
       train.local_update_steps ${local_updates} \
-      train.optimizer.lr $lr \
+      train.optimizer.lr ${lr} \
       train.optimizer.weight_decay $weight_decay \
       seed ${seed[k]} \
       model.fedgsl.gsl_gnn_hids ${gsl_gnn_hids} \
-      model.fedgsl.server_lr ${server_lr} \
+      model.fedgsl.server_lr ${lr} \
       model.fedgsl.loc_gnn_outsize ${loc_gnn_outsize} \
       model.fedgsl.glob_gnn_outsize ${glob_gnn_outsize} \
       model.fedgsl.k $k_for_knn \
