@@ -1,3 +1,0 @@
-{'Role': 'Client #3', 'Round': 0, 'Results_raw': {'train_avg_loss': 2.0373852252960205, 'train_total': 1590, 'train_correct': 245.0, 'train_loss': 3239.4425082206726, 'train_acc': 0.1540880503144654}}
-{'Role': 'Client #2', 'Round': 0, 'Results_raw': {'train_avg_loss': 2.0434634685516357, 'train_total': 1572, 'train_correct': 243.0, 'train_loss': 3212.3245725631714, 'train_acc': 0.15458015267175573}}
-{'Role': 'Client #1', 'Round': 0, 'Results_raw': {'train_avg_loss': 2.0700039863586426, 'train_total': 1509, 'train_correct': 215.0, 'train_loss': 3123.6360154151917, 'train_acc': 0.1424784625579854}}
