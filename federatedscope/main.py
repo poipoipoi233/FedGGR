@@ -55,45 +55,4 @@ if __name__ == '__main__':
                        config=init_cfg.clone(),
                        client_configs=client_cfgs)
     _ = runner.run()
-    import pandas as pd
 
-    out_dict = {
-        'seed': [init_cfg.seed],
-        'method': [init_cfg.federate.method],
-        'model': [init_cfg.model.type],
-        'batch_size': [init_cfg.dataloader.batch_size],
-        'datasets': [init_cfg.data.type],
-        'client_num': [init_cfg.federate.client_num],
-        'hidden': [init_cfg.model.hidden],
-        'dropout': [init_cfg.model.dropout],
-        'local_updates': [init_cfg.train.local_update_steps],
-        'lr': [init_cfg.train.optimizer.lr],
-        'weight_decay': [init_cfg.train.optimizer.weight_decay],
-        'test_acc': [_['client_summarized_avg']['test_acc']],
-        'val_loss': [_['client_summarized_avg']['val_loss']]
-    }
-    if out_dict['method'][0] == 'fedgsl':
-        out_dict['server_lr'] = init_cfg.model.fedgsl.server_lr
-        out_dict['loc_gnn_outsize'] = init_cfg.model.fedgsl.loc_gnn_outsize
-        out_dict['glob_gnn_outsize'] = init_cfg.model.fedgsl.glob_gnn_outsize
-        out_dict['gsl_gnn_hids'] = init_cfg.model.fedgsl.gsl_gnn_hids
-        out_dict['k_for_knn'] = init_cfg.model.fedgsl.k
-        out_dict['pretrain_out_channels']= init_cfg.model.fedgsl.pretrain_out_channels
-
-    df = pd.DataFrame(out_dict, columns=out_dict.keys())
-    # folder_name = f'federatedscope/FedGSL/exp_out/{init_cfg.federate.method}_{init_cfg.model.type}/{init_cfg.data.type}'
-    # parameter_name = f'{init_cfg.federate.client_num}clients_{init_cfg.train.optimizer.type}'
-    #
-    # if init_cfg.model.fedgsl.HPO is True:
-    #     folder_name = folder_name + '_HPO'
-    #     parameter_name = parameter_name + '_HPO'
-    # else:
-    #     folder_name = folder_name + '_exp'
-    #     parameter_name = parameter_name + '_exp'
-    #
-    # csv_name = f'{folder_name}/{parameter_name}.csv'
-    #
-    # if not os.path.exists(folder_name):
-    #     os.makedirs(folder_name)
-
-    df.to_csv(f'{init_cfg.data.type}_sensitivity.csv', mode='a', index=False, header=False)
