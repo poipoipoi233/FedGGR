@@ -1,4 +1,4 @@
-# FedGSL
+# FedGGR
 
 The code for the paper "Subgraph Federated Learning with Global Graph Reconstruction"
 
