@@ -17,7 +17,7 @@ The Implementation of our code is based on FederatedScope V2.0 :https://github.c
 First of all, users need to clone the source code and install the required packages (we suggest python version >= 3.9). 
 
 ```bash
-git clone https://github.com/poipoipoi233/FedGSL.git
+git clone https://github.com/poipoipoi233/FedGGR.git
 cd FederatedScope
 ```
 
