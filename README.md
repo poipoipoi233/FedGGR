@@ -7,6 +7,7 @@ The code for the paper "Subgraph Federated Learning with Global Graph Reconstruc
 ## Acknowledgment
 
 The Implementation of our code is based on FederatedScope V0.2.0 https://github.com/alibaba/FederatedScope 
+
 This is an easy-to-use and feature-rich federated learning framework, and we are very grateful for the outstanding work of the developers of this framework
 
 
