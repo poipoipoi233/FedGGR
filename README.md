@@ -6,7 +6,7 @@ The code for the paper "Subgraph Federated Learning with Global Graph Reconstruc
 
 ## Acknowledgment
 
-The Implementation of our code is based on FederatedScope V2.0 :https://github.com/alibaba/FederatedScope
+The Implementation of our code is based on FederatedScope V0.2.0 https://github.com/alibaba/FederatedScope
 
 
 
@@ -48,7 +48,7 @@ pip install .
 
 
 
-### Step 2. Run FedGSL
+### Step 2. Run FedGGR
 
 ```bash
 cd federatedscope/FedGSL
